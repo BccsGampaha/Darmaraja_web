@@ -31,7 +31,7 @@ def group_by_lengths(vals, lens):
                 sublist.append(vals[index])
                 index += 1
             else:
-                index = 0  # Wrap around to the beginning of vals if we run out of items
+                index = 0 
                 sublist.append(vals[index])
                 index += 1
 
