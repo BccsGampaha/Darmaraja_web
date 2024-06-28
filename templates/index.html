@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>CyberNews</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <script async type="text/javascript" src="{{ url_for('static', filename='js/gpt.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/manual-trigger.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/manual-trigger.min.js') }}"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-18029962-2"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+
+         gtag('config', 'UA-18029962-2');
+      </script>
+      <script src="{{ url_for('static', filename='js/OneSignalSDK.js') }}" async=""></script>
+      <script>
+         window.OneSignal = window.OneSignal || [];
+         OneSignal.push(function() {
+         	OneSignal.init({
+         		appId: "052d24c6-36cc-4b70-b30c-6d34022c2610",
+         	});
+         });
+      </script>
+      <!-- <script type="text/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+      <script src="{{ url_for('static', filename='js/OneSignalSDK.js') }}" async></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.8.3-jquery.min.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.infinitescroll.js') }}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+      <style>
+         .side_section_menus{background: #0a1633; }
+         .nav-pills .nav-link.active, .nav-pills .show > .nav-link{background-color: aliceblue; border-radius: 0px; color: #23408e}
+         .nav-pills .nav-link{color: aliceblue; border: 1px solid #fff; border-radius: 0px}
+         a:hover {text-decoration: underline !important; color:#555555 !important; transition: color 0.3s ease;}
+         .bb_menus > ul > li {padding: 7px 0px; border-bottom: 1px solid #cccccc30;}
+         .bb_menus > ul > li > a {text-decoration: none;color: #fff;font-family: 'Merriweather Sans';font-size: 15px;}
+         .bb_menus > ul > li > a :hover{color: #fff !important;}
+         .netw a{text-decoration: none;color: #fff;font-family: 'Merriweather Sans'!important;font-size: 15px;font-weight: 400}
+         .netw a:hover{color: #fff !important;}
+         .netw{margin-bottom: 12px}
+         .smdd{background: none;border: none;padding-left: 0px;font-family: 'Merriweather Sans';font-size: 15px;}
+         .smdd:hover{background-color: #0a1633;} .smdd a:hover{background-color: #0a1633;} .smdd:focus{background-color: #0a1633;}
+         .navsb{color: #0a1633; text-decoration: none; font-weight: 600}
+         .search_input,.searchbar .search_icon{color:#0a1633}.searchbar{margin-bottom:auto;margin-top:auto;height:36px;background-color:#fff;border-radius:2px;padding:4px;border:1px solid #0a1633}.search_input{border:0;outline:0;background:0 0;width:200px;caret-color:transparent;transition:width .4s linear}.searchbar .search_input{padding:0 10px;caret-color:red;transition:width .4s linear}.search_icon{height:25px;width:25px;float:right;display:flex;justify-content:center;align-items:center;border-radius:50%;color:#fff;border:none;cursor:pointer;background-color:transparent}
+         .btn-account {background: #fff;border: 1px solid #000;color: #000;margin-right: 0;transition: ease-out .3s;box-shadow: inset 0 0 0 0 #000;padding: 1px 7px 3px 7px;line-height: 1;font-size: 12px;font-weight: 700;border-radius: 3px;}
+         .btn-sub {background: #ffb901;border: 1px solid #de9c00;color: #111;margin-right: 0;transition: ease-out .3s;box-shadow: inset 0 0 0 0 #000;padding: 1px 7px 3px 7px;line-height: 1;font-size: 12px;font-weight: 700;border-radius: 3px;}
+         .nav .nav-item button.active { color: #ffffff !important; font-family: 'Merriweather Sans'; font-size: 16px}
+         .nav .nav-item button.active::after {content: ""; border-bottom: 2px solid var(--bs-danger); width: 100%; position: absolute; left: 0; bottom: -1px; border-radius: 5px 5px 0 0;}
+         .owl-prev{font-size: 50px!important;line-height: 0!important;} .owl-next{font-size: 50px!important;line-height: 0!important;}
+         .babg{color:#d00;background-color:#fff;border-radius:0;font-weight:400;border:1px solid #ddd} .dest{background-color: #ff0000;width: 142px;margin-left: 15px;margin-top: 2px;}
+         .top-hd-lgt {font-size: 40px;font-family: 'Merriweather'; font-weight: 800; margin-bottom: 15px;}
+         .modalDialog{position:fixed;font-family:Arial,Helvetica,sans-serif;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.8);z-index:99999;opacity:0;-webkit-transition:opacity .4s ease-in;-moz-transition:opacity .4s ease-in;transition:opacity .4s ease-in;pointer-events:none}.modalDialog:target,.opend{opacity:1;pointer-events:auto}.modalDialog>div{width:440px;position:relative;margin:10% auto;padding:5px 20px 13px;border-radius:10px}.popclose{line-height:35px;position:absolute;right:-25px;text-align:center;top:-25px;width:55px;cursor:pointer;height:55px}.popclose:hover{text-decoration:none}
+         .blog_title{font-size: 40px;
+         font-family: 'Merriweather';
+         font-weight: 800;
+         margin-top: 15px;}
+         .btime {
+         color: #1a1a1a !important;
+         font-size: 18px !important;
+         font-weight: 700 !important;
+         margin-bottom: 14px !important;
+         font-family: 'Merriweather' !important;
+         }
+         .neup {
+         color: #e21b22;
+         font-weight: 700;
+         font-size: 14px;
+         margin-bottom: 2px;
+         padding-left: 5px;
+         margin-top: 5px;
+         font-family: 'PT Sans', sans-serif !important;
+         }
+         .pr_kr .timeline {
+         list-style: none;
+         margin: 10px 0 0;
+         margin-top: 10px;
+         padding-left: 26px;
+         position: relative;
+         }
+         .pr_kr .timeline li {
+         margin: 0;
+         padding-left: 0;
+         position: relative;
+         }
+         .pr_kr .timeline li:first-child::before {
+         top: 12px;
+         }
+         .pr_kr .timeline li.active::before {
+         background: #000;
+         margin-top: 7px
+         }
+         .pr_kr .timeline li::before {
+         content: " ";
+         background: #fff;
+         display: inline-block;
+         position: absolute;
+         border-radius: 50%;
+         border: 2px solid #000;
+         left: -25px;
+         width: 12px;
+         height: 12px;
+         z-index: 1;
+         top: 14px;
+         }
+         .pr_kr .timeline li a::before {
+         content: " ";
+         position: absolute;
+         border-left: 2px solid #000;
+         left: -20px;
+         height: 100%;
+         z-index: 0;
+         top: 15px;
+         }
+         .pr_kr .timeline li a {
+         font-size: 16px;
+         line-height: 25px;
+         font-family: "Merriweather",sans-serif;
+         color: #000;
+         font-weight: 500;
+         }
+         .pr_kr .timeline li a .time {
+         display: block;
+         font-size: 12px;
+         font-family: "Merriweather Sans",sans-serif;
+         margin: 0 0 5px;
+         width: max-content;
+         color:#000;
+         font-weight: normal
+         }
+         .pr_kr .timeline li a {
+         font-size: 16px;
+         line-height: normal;
+         text-decoration: none;
+         padding: 0px;
+         padding-top: 10px;
+         display: block;
+         }
+         .pr_kr p{font-family: 'Merriweather'; font-size: 16px; margin-bottom: 20px; color: #111111}
+         .timeline li:first-child::before {
+         top: 10px;
+         background-color: #000;
+         } .story-carousel .owl-stage{right:50px}.owl-next,.owl-prev{position:absolute;top:50%;transform:translateY(-50%);background-color:#fff!important;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.2);border:1px solid #d6d6d6!important}.ccr_cardss_col,.ccr_cardss_col_inners,.ccrcard_img{position:relative}.owl-prev{left:-10px}.owl-next{right:-10px}.owl-next::before,.owl-prev::before{content:'';display:inline-block;width:10px;height:10px;border:solid #000;border-width:0 2px 2px 0}.owl-prev::before{transform:rotate(135deg)}.owl-next::before{transform:rotate(-45deg)}.owl-nav button span{display:none}.ccr_cardss_col{display:inline-block;border-radius:8px;overflow:hidden}.ccrcard_img img{width:100%;display:block}.ccrcard_img::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to top,rgba(0,0,0,.75) 3%,rgba(0,0,0,0) 100%)}.ccrcard_contents{position:absolute;bottom:0;left:0;width:100%;padding:20px;color:#fff;z-index:2}.inner_ccrcard_contents h4,.inner_ccrcard_contents span{margin:0}.inner_ccrcard_contents h4{font-size:18px;margin-top:5px}
+      </style>
+   </head>
+   <body>
+      <div class="side_section_menus">
+         <div class="inner_side_menus">
+            <div class="top_side_bar_ss">
+               <a href="javascript:void(0)" class="closess">
+               <i class="fa-solid fa-xmark"></i>
+               </a>
+            </div>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+               <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Sections</button>
+               </li>
+               <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Upcoming</button>
+               </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+               <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <div class="bottom_brs">
+                     <div class="bb_menus">
+                        <ul>
+                           <li>Home</li>
+                           <li>
+                              E-Paper
+                           </li>
+                           <li>
+                              Life
+                           </li>
+                        </ul>
+                     </div>
+                     <header style="float: left; margin-left: 0px; margin-top: 0px">
+                        <div>
+                        </div>
+                     </header>
+                     <header class="social text-left" style="margin-right: 0px; float: left; width: 100%">
+                     <hr style="border-top:1px solid #b6bac4;">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <center>
+         </center>
+      </div>
+      <div class="bgg_darkss"></div>
+      <div class="news_main_contact_ber">
+         <div class="main_ID_header">
+            <div class="main_inner_main_ID_header d-lg-none" style="margin-top: -5px">
+               <div class="container">
+                  <div class="main_mid_id_headers">
+                  </div>
+                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                     <button type="button" class="btn btn-account float-end">Sign In</button>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3"></div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                     <div class="top_section float-end">
+                        <div class="bars">
+                           <a href="javascript:void(0)" class="bar" style="margin-bottom: 12px; background: none;">
+                           <i style="color: #000000; font-size: 26px" class="fa-solid fa-bars"></i>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="main_inner_main_ID_header d-none d-lg-block">
+         <div class="container border_bts_2">
+            <div class="main_mid_id_headers">
+               <div class="row">
+                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                     <div class="full_left">
+                        <div class="top_section w-100">
+                           <div class="bars">
+                              <a href="javascript:void(0)" class="bar">
+                              <img src="{{ url_for('static', filename='images/bar.png') }}" alt="" srcset="">
+                              <span>Sections</span>
+                              </a>
+                           </div>
+                           <div class="search">
+                              <div class="inner_search">
+                                 <a href="javascript:void(0)" class="search_btns">
+                                 <i class="fa-solid fa-magnifying-glass"></i>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      <div class="main_menus_sections d-none d-lg-block">
+         <div class="main_inner_menus_section">
+            <div class="container border_botomss">
+               <div class="full_menus">
+                  <div class="row">
+                     <div class="col-xl-10 col-lg-9 col-md-7 col-6">
+                        <div class="menus_site" style="height: 50px">
+                           <div class="menu_bar mobile">
+                              <a href="javascript:void(0)" class="menus_bars"><i class="fa-solid fa-bars"></i></a>
+                           </div>
+                           <div class="inner_menu_site desk_top">
+                              <ul>
+                                 <li>Home</a>
+                                 </li>
+                                 <li>Latest News
+                                 </li>
+                                 <li>
+                                    Features
+                                 </li>
+                                 <li>
+                                    Business
+                                 </li>
+                                 <li>
+                                    World News
+                                 </li>
+                                 <li>
+                                    Videos
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- next-sub-menu -->
+         <div class="next-sub-menu">
+            <div class="next-sub-menus_inner">
+               <div class="container sub_border">
+                  <div class="row d-none d-lg-block">
+                     <div class="col-xl-12">
+                        <div class="full_sub_menus">
+                           <div class="iiner_full_sub_menus">
+                              <ul>
+                                 <li>
+                                    <a  class="rd_txt" style="font-weight: 700">Trending</a>
+                                 </li>
+                                 <li>
+                                    <a  class="active_link">Daily News</a>
+                                 </li>
+                                 <li>
+                                    Breaking News
+                                 </li>
+                                 <li>
+                                    Top News
+                                 </li>
+                                 <li>
+                                    Today's Paper
+                                 </li>
+                                 <li>
+                                    Videos
+                                 </li>
+                                 <li>
+                                    <a style="background-color: #FFEFD8" href="#">Gossip</a>
+                                 </li>
+                                 <li>
+                                    <a style="background: linear-gradient(96.44deg,#c5d5ff,#e2f0ff 51.56%,#d7d4ff);outline: 1px solid #fff;outline-offset: -5px;" href="#">Buy</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      <div class="mobile_menus_area">
+         <div class="inner_mobile_menus_aresa">
+            <div class="mob_close_bar">
+               <a href="javascript:void(0)" class="cls_btn"><i class="fa-solid fa-xmark"></i></a>
+            </div>
+            <div class="main_mob_menu">
+               <ul>
+                  <li>
+                     Home
+                  </li>
+                  <li>
+                     News
+                  </li>
+                  <li>
+                     Life
+                  </li>
+                  <li>
+                     Opinion
+                  </li>
+                  <li>
+                     Podcast
+                  </li>
+                  <li>
+                     Sports
+                  </li>
+                  <li>
+                     Features
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <!--------======================================Header Section================================-------->
+      <!-- Body -->
+      <div class="row">
+         <div class="col-xl-12">
+            <div class="text-center top-ad d-none d-lg-block">
+               <center>
+               </center>
+            </div>
+            <div class="text-center top-ad">
+            </div>
+            </div -->
+            <div class="container">
+               <div class="row">
+                  <div class="col-12">
+                     <!-- top story -->
+                     <!-- top story -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <style>
+         .inner_site_logo > img {
+         width: 310px;
+         }
+         .latest_content_boxs > h4{font-size: 18px}
+         .news_block>h4 a{
+         color:#212529;
+         text-decoration: none;
+         }
+         .latest_content_boxs > h4 a{
+         color:#212529;
+         text-decoration: none;
+         }
+         .news_block>p>a img {
+         float: right;
+         padding: 10px;
+         padding-right: 0px;
+         padding-bottom: 2px;
+         }
+         .img-90{width: 90px}
+         .lime_light_content > span a{
+         color: #6c6f72;text-decoration: none;}
+         .lime_light_content > h3 a{
+         text-decoration: none;
+         color: #212529;}
+         .col_item_mid > h4 a{
+         font-family: 'Merriweather';
+         font-size: 18px;
+         margin-bottom: 0;
+         font-weight: 700;
+         margin-bottom: 5px;
+         text-decoration: none;
+         color: #212529;
+         }
+         .black_headers > h4 a{
+         margin-bottom: 0;
+         font-family: 'Merriweather';
+         font-weight: 800;
+         color: #fff;
+         }
+         .hitvb > h4 a{
+         font-family: 'Merriweather';
+         font-size: 18px;
+         margin-bottom: 0;
+         font-weight: 700;
+         margin-bottom: 12px;
+         color: #ffffff
+         }
+         .latest_header > h4 a{
+         font-family: 'Playfair Display';
+         font-size: 30px;
+         color: #b00020;
+         font-weight: 800;
+         margin-bottom: 0;
+         text-decoration: none;
+         }
+         .col_item_mid > h4 a{color:#212529;
+         text-decoration: none;}
+         .p-head{color: #ffffff !important;}
+         .width-72{width: 72px}
+         .inner_rx_content > p a{color:#212529;
+         text-decoration: none;}
+         .spsh a{color:#212529;
+         text-decoration: none;}
+         .inner_ccrcard_contents > h4 a{
+         text-decoration: none;
+         color: #fff;
+         }
+         .full_ss_heading > h2 a{color: #b00020; text-decoration: none;}
+         .col_item_mid > h4 a{
+         font-family: 'Merriweather';
+         font-size: 18px;
+         margin-bottom: 0;
+         font-weight: 700;
+         margin-bottom: 5px;
+         color: #ffffff;
+         text-decoration: none;
+         }
+         .full_ss_heading > h2 a{
+         position: relative;
+         text-align: center;
+         color: #b00020;
+         font-size: 30px;
+         font-family: 'Playfair Display';
+         font-weight: 800;
+         margin-bottom: 0px;
+         line-height: 1;
+         z-index: 999;
+         }
+         .col_item_mid > h4 a {color:#212529; text-decoration: none;}
+         .cl_items > h2 a{
+         font-family: 'Merriweather';
+         text-decoration: none;
+         color: #212529;
+         }
+         .collss_r.border_bottom > h3 a{text-decoration: none; color: #212529;}
+         .top_headers > h2 a{
+         text-decoration: none;
+         color: #b00020;
+         }
+         .fs-20 a{
+         font-size: 20px !important;
+         }
+         .footer_header_wraping > h2 a{
+         font-size: 32px;
+         font-family: 'Playfair Display';
+         margin-bottom: 0;
+         font-weight: 700;
+         color: #212529;text-decoration: none;
+         }
+         .vid > h4 a{
+         font-family: 'Merriweather';
+         font-size: 18px;
+         margin-bottom: 0;
+         font-weight: 700;
+         margin-bottom: 12px;color: #ffffff;text-decoration: none;
+         }
+         .col_item_mid > h4 a{
+         font-family: 'Merriweather';
+         font-size: 18px;
+         margin-bottom: 0;
+         font-weight: 700;
+         margin-bottom: 5px;
+         }
+         .collss_r.border_bottom > h3 a{
+         font-family: 'Merriweather';
+         font-size: 20px;
+         font-weight: 600;
+         }
+         .headimg{
+         width:229px;
+         height:183px;
+         margin:0px auto;
+         overflow:hidden;
+         }
+         .wrap {
+         height: auto;
+         max-width: 100%;
+         overflow: hidden;
+         box-sizing: border-box;
+         padding: 0px;
+         }
+         .newsTickerCon{
+         font-family:'Open Sans';
+         font-weight: 400;
+         width:100%;
+         height:322px;
+         overflow:hidden;
+         padding: 0;
+         margin: 0;
+         }
+         .headline{
+         color:#000;
+         text-align:left;
+         font-size: 14px;
+         font-weight: bold;
+         margin-bottom: 5px
+         }
+         .headline a{color: #000; text-decoration: none}
+         .newsTickerCon p{
+         text-align:left;
+         color:#000;
+         overflow:hidden;
+         text-overflow:_ellipsis;
+         /*white-space: nowrap;*/
+         line-height:20.8px;
+         margin-top: 5px;
+         }
+         .newsTickerCon ul{
+         list-style:none;
+         position:relative;
+         padding: 0px;
+         margin: 0px
+         }
+         .newsTickerCon li{
+         margin-bottom: 24px;
+         background-color: #EEEFF1;
+         text-align:center;
+         border-bottom:0px solid #a1a9a5;
+         font-size:13px;
+         padding: 10px
+         }
+         .newsTickerCon a {
+         color:#000;
+         }
+         li img {
+         margin-right: 10px;
+         float: left;
+         }
+         .col_item_mid > h4{margin-bottom: 5px !important;}
+         .col_item_mid > h4 a{margin-bottom: 5px !important;}
+         .gray-tag {
+         display: inline-block;
+         padding: .35em .65em;
+         font-size: .75em;
+         font-weight: 700;
+         line-height: 1;
+         color: #fff;
+         text-align: center;
+         white-space: nowrap;
+         vertical-align: baseline;
+         font-family: 'Merriweather Sans';
+         border-radius: 3px; background-color: #3a4058;
+         }
+         .pu1zi{text-align:left;margin:14px}.pu1zi ._2Z0l7{color:#e21b22;font:700 12px/16px font-family: 'Roboto Flex', sans-serif; font-weight: bold}@media screen and (min-width:768px) and (orientation:portrait),screen and (min-width:999px){.pu1zi{margin:16px 0px}.pu1zi ._2Z0l7{font:700 16px/20px font-family: 'Roboto Flex', sans-serif; font-weight: bold; margin-top:0px}}@media screen and (max-width:767px),screen and (orientation:landscape) and (max-width:1000px){.pu1zi ._2Z0l7{margin-bottom:12px}}.pu1zi ._2Z0l7>i{display:inline-block;vertical-align:middle;width:16px;height:16px;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;-webkit-background-clip:padding-box;-moz-background-clip:padding;background-clip:padding-box;padding:0;position:relative;margin:-4px 16px 0 0}.pu1zi ._2Z0l7>i:after{opacity:0;box-sizing:border-box;content:" ";width:100%;height:100%;background:rgba(226,27,34,.5);background-clip:padding-box}.pu1zi ._2Z0l7>i:after,.pu1zi ._2Z0l7>i:before{position:absolute;top:0;left:0;-webkit-border-radius:100px;-moz-border-radius:100px;border-radius:100px;-webkit-background-clip:padding-box;-moz-background-clip:padding}.pu1zi ._2Z0l7>i:before{width:16px;height:16px;content:"";background:#e21b22;z-index:3}.pu1zi ._2Z0l7>i:after{z-index:1;-webkit-animation:2s 1s infinite _1QVj3;-moz-animation:2s 1s infinite _1QVj3;-ms-animation:_1QVj3 2s infinite 1s;-o-animation:2s 1s infinite _1QVj3;animation:2s 1s infinite _1QVj3}@keyframes _1QVj3{0%{-webkit-transform:scale(1);opacity:0}50%{opacity:1}to{-webkit-transform:scale(2);opacity:0}}@-webkit-keyframes _1QVj3{0%{-webkit-transform:scale(1);opacity:0}50%{opacity:1}to{-webkit-transform:scale(2);opacity:0}}@-moz-keyframes _1QVj3{0%{-webkit-transform:scale(1);opacity:0}50%{opacity:1}to{-webkit-transform:scale(2);opacity:0}}
+         ._2bKbj {
+         font: 500 12px/16px font-family: 'Roboto Flex', sans-serif; font-weight: bold
+         color: #e21b22;
+         padding-left: 8px;
+         cursor: pointer;
+         text-transform: uppercase;
+         -webkit-tap-highlight-color: transparent;
+         display: inline-block;
+         }
+         .top-cont .nav .nav-item button{ font-size: 14px; padding-left: 5px; padding-right: 5px; color: #737373 !important; font-weight: bold !important; padding-bottom: 4px; margin-left: 7px!important; margin-right: 7px!important;}
+         .top-cont .nav .nav-item button.active {
+         background-color: transparent; font-weight: bold !important;
+         color: #111111 !important; padding-bottom: 4px;
+         }
+         .top-cont .nav .nav-item button.active::after {
+         content: "";
+         border-bottom: 3px solid #111111;
+         width: 100%;
+         position: absolute;
+         left: 0;
+         bottom: -2px;
+         border-radius: 5px 5px 0 0;
+         }
+         .top-cont{}
+         @media (max-width: 767px) {
+         .news_body_areas {
+         margin-top: 0px
+         }
+         .main_mid_id_headers{padding-bottom: 5px;}
+         }
+         .by-line{ margin-top: 5px}
+         .by-linec{ display: block;
+         font-size: 12px;
+         font-family: "Merriweather Sans",sans-serif;
+         margin: 0 0 5px;
+         width: max-content;
+         color: #000;
+         font-weight: normal;}
+         .three-line-spliter {
+         display: block;
+         width: 100%;
+         padding: 3px 0;
+         margin:10px 0px 20px 0px;
+         border-top: 1px solid rgba(0,0,0,0.1450980392);
+         border-bottom: 1px solid rgba(0,0,0,0.1450980392);
+         }
+         .three-line-spliter i {
+         background-color: rgba(0,0,0,0.1450980392);
+         height: 1px;
+         width: 100%;
+         display: block;
+         }
+         .red-tag {
+         display: inline-block;
+         padding: .35em .65em;
+         font-size: .75em;
+         font-weight: 700;
+         line-height: 1;
+         color: #fff;
+         text-align: center;
+         white-space: nowrap;
+         vertical-align: baseline;
+         font-family: 'Merriweather Sans';
+         border-radius: 3px; background-color: #3a4058;
+         }
+      </style>
+      <!-- news_body_areas -->
+      <div class="news_body_areas">
+         <div class="inner_news_body_area_end">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-12">
+                     <div class="container d-lg-none" style="padding: 0px">
+                        <div class="header top-cont">
+                           <ul class="nav nav-pills mb-3 border-bottom border-2 justify-content-center" id="new-pills-tab" role="tablist">
+                              <li class="nav-item" role="presentation">
+                                 <button class="nav-link text-primary fw-semibold active position-relative m-0" id="new-pills-home-tab" data-bs-toggle="pill" data-bs-target="#new-pills-home" type="button" role="tab" aria-controls="new-pills-home" aria-selected="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false" role="img" class="wpds-c-fBqPWp wpds-c-fBqPWp-ieUXbwY-css" style="width: 16px">
+                                       <path d="M2.32 8 2 8.32V14h5v-4h2v4h5V8.32L13.68 8 8 1.63M13 13h-3V9H6v4H3V8.75L8 3l5 5.75Z"></path>
+                                    </svg>
+                                    <br>Top Stories
+                                 </button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                 <button class="nav-link text-primary fw-semibold position-relative m-0" id="new-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#new-pills-profile" type="button" role="tab" aria-controls="new-pills-profile" aria-selected="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false" role="img" class="wpds-c-fBqPWp wpds-c-fBqPWp-ieUXbwY-css" style="width: 16px">
+                                       <path d="M8 1a7 7 0 1 0 5 2.05A7 7 0 0 0 8 1m0 13a6 6 0 1 1 4.24-1.76A6 6 0 0 1 8 14" data-name="Path 18"></path>
+                                       <path d="M7.5 4.23v4l3.5 2.14.52-.85-3-1.8V4.23Z" data-name="Path 19"></path>
+                                    </svg>
+                                    <br>Breaking News
+                                 </button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                 <button class="nav-link text-primary fw-semibold position-relative m-0" id="new-pills-contact-tab" data-bs-toggle="pill" data-bs-target="#new-pills-contact" type="button" role="tab" aria-controls="new-pills-contact" aria-selected="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false" role="img" style="width: 16px;">
+                                       <path d="M0 14l5-5 3 3 7-7v3h2V2h-6v2h3l-6.293 6.293L5 6 0 11z"></path>
+                                    </svg>
+                                    <br>Trending
+                                 </button>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="left_side_short_news">
+                        <a href="#" class="text-decoration-none d-none d-lg-block">
+                           <div class="top_headers clickable" style="margin-bottom: 15px">
+                              <h2>Top News</h2>
+                           </div>
+                        </a>
+                        <h5 class="red-tag">Tech</h5>
+                        <div class="news_block d-none d-lg-block">
+                           <h4>
+                              <a style="font-family: 'Merriweather'; line-height: 30px; font-weight: bold; font-size: 24px" href="article/{{articles[0][0].id}}">{{ articles[0][0].title}}</a> <span class="badge">
+                              </span>
+                           </h4>
+                           <div class="fl_cmts" style="margin-top: -5px; margin-bottom: 5px">
+                              <div class="timesss">
+                                 <h4>4 hours ago</h4>
+                              </div>
+                              <div class="cmt">
+                                 <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span> 0</span>
+                              </div>
+                              <div class="cmt">
+                                 <i class="fas fa-signal" style="font-size: 12px;"></i><span> 1350</span>
+                              </div>
+                           </div>
+                           <p><a href="#">
+                              <img style="width:110px" src="{{ url_for('static', filename=articles[0][0].image_file) }}" alt="Sri Lanka poised to secure grace period for repaying bilateral debts" srcset=""> </a>
+                              {{articles[0][0].description[:600]}}... 
+                        </div>
+                     </div>
+                     <div class="text-center top-ad d-none d-lg-block mt-3" style="float: right">
+                        <center>
+                        </center>
+                     </div>
+                     <div class="buletin d-none d-lg-block" style="float: left">
+                        <div class="inner_buletin">
+                           <div class="main_buletins">
+                              <ul class="timeline pt-0 mt-2">
+                              {% for i in articles[1] %}
+                                 <li class="time-list"><a href="article/{{i.id}}">
+                                    <span class="time"><span class="timePublished">24 Jun 2024 </span>
+                                    </span>
+                                    {{i.title}}
+                                    <span class="badge">
+                                    </span></a>
+                                 </li>
+                              {% endfor %}
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="read_more">
+                           <a href="#" class="read_more_link">MORE TOP
+                           NEWS</a>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="inner_latest_news_boxs w-100 d-none d-lg-block" style="float: left;">
+                        <div class="three-line-spliter"><i></i></div>
+                        <div class="latest_header">
+                           <h4 style="margin-bottom: -10px; margin-top: 10px">News</h4>
+                        </div>
+                     </div>
+                     {% for i in articles[2] %}
+                     <div class="latest_news_boxs pb_10 border_bottom mt-4 d-none d-lg-block">
+                        <div class="latest_content_boxs">
+                           <h4>
+                              <a href="#">{{i.title}} </a>
+                           </h4>
+                        </div>
+                        <div class="news_block">
+                           <p>
+                              <a href="article/{{i.id}}">
+                              <img src="{{ url_for('static', filename=i.image_file) }}" class="img-90" alt="Sri Lankans in Kenya safe despite anti-tax protests" srcset=""> </a>
+                              {{i.description[:100]}}
+                           </p>
+                        </div>
+                        <div class="fl_cmts">
+                           <div class="timesss">
+                              <h4>24 minute ago</h4>
+                           </div>
+                           <div class="cmt">
+                              <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span> 0</span>
+                           </div>
+                           <div class="cmt">
+                              <i class="fas fa-signal" style="font-size: 12px;"></i><span> 49</span>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+                     <div class="read_more d-none d-lg-block">
+                        <a href="#" class="read_more_link">MORE BREAKING NEWS</a>
+                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-12">
+                     <div class="big_lime_light_content">
+                        <div class="inner_big_lime_light_content">
+                           <div class="lime_light_content">
+                              <span><a href="#">MAIN</a></span>
+                              <h3>{{articles[0][1].title}}
+                                 </a> <span class="badge">
+                                 </span>
+                              </h3>
+                           </div>
+                        </div>
+                        <div class="lime_light_image_box" style="border-bottom:none">
+                           <div class="inner_lime_light_image_box" style="border-bottom: none">
+                              <a href="#">
+                              <img src="{{ url_for('static', filename=articles[0][1].image_file) }}" alt="Stop military attacks on Palestine" srcset="" class="l_imgs"></a>
+                           </div>
+                           <p style="font-family: 'Merriweather'; margin-bottom: 5px">
+                              {{articles[0][1].description[:1000]}}...
+                           </p>
+                           <br>
+                           <div class="fl_cmts">
+                              <div class="timesss">
+                                 <h4>25 Jun 2024 </h4>
+                              </div>
+                              <div class="cmt">
+                                 <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                              </div>
+                              <div class="cmt">
+                                 <i class="fas fa-signal" style="font-size: 12px;"></i><span> 239</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="three-line-spliter"><i></i></div>
+                     </div>
+                     <div class="row">
+                     </div>
+                     <!-- .top_us -->
+                     <div class="next-middle-section">
+                        <div class="next-middle-section">
+                           <div class="row mt-2">
+                              <div class="col-md-12">
+                                 <div class="latest_header" style="margin-bottom: 0px">
+                                    <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1450980392);padding-bottom: 5px;margin-bottom: -5px;"> <a href="#">Editor's Picks </a> </h4>
+                                 </div>
+                              </div>
+                              <div class="col-xl-6 col-md-12 col-12">
+                                 <div class="mid_cols">
+                                    <div class="inner_mid_cols">
+                                       <div class="col_item_mid">
+                                          <h4>
+                                             <a style="font-size: 18px" href="articl/{{articles[4][0].id}}">{{articles[4][0].title}}</a> <!--<span class="badge">
+                                                </span>-->
+                                          </h4>
+                                          <div class="header"><a style="" href="#" class="person-name lnk by-linec">Plus</a></div>
+                                          <div class="fl_cmts">
+                                             <div class="timesss">
+                                                <h4>26 Jun 2024</h4>
+                                             </div>
+                                             <div class="cmt">
+                                                <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                             </div>
+                                             <div class="cmt">
+                                                <i class="fas fa-signal" style="font-size: 12px;"></i><span> 782</span>
+                                             </div>
+                                          </div>
+                                          <div class="box_thumb">
+                                             <a href="#">
+                                             <img src="{{ url_for('static', filename=articles[4][0].image_file) }}" alt= "No IMG" srcset="" class="thumb_image"></a>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-xl-6 col-md-12 col-12">
+                                 <div class="mid_cols">
+                                    <div class="inner_mid_cols">
+                                       <div class="col_item_mid border_bottom mb_28 pb_10">
+                                          <h4 class="font_bold ">
+                                             <a style="font-size: 18px" href="{{articles[4][1].id}}"> {{articles[4][1].title}} </a> <!--<span class="badge">
+                                                </span>-->
+                                          </h4>
+                                          <div class="header"><a style="" href="#" class="person-name lnk by-linec">Plus</a></div>
+                                          <div class="fl_cmts">
+                                             <div class="timesss">
+                                                <h4>25 Jun 2024 </h4>
+                                             </div>
+                                             <div class="cmt">
+                                                <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>1</span>
+                                             </div>
+                                             <div class="cmt">
+                                                <i class="fas fa-signal" style="font-size: 12px;"></i><span> 617</span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col_item_mid border_bottom mb_28 pb_10">
+                                          <h4 class="font_bold ">
+                                             <a style="font-size: 18px" href="{{articles[4][2].id}}">{{articles[4][2].title}}</a> <!--<span class="badge">
+                                                </span>-->
+                                          </h4>
+                                          <div class="header"><a style="" href="#" class="person-name lnk by-linec">Plus</a></div>
+                                          <div class="fl_cmts">
+                                             <div class="timesss">
+                                                <h4>25 Jun 2024 </h4>
+                                             </div>
+                                             <div class="cmt">
+                                                <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                             </div>
+                                             <div class="cmt">
+                                                <i class="fas fa-signal" style="font-size: 12px;"></i><span> 832</span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="col_item_mid border_bottom mb_28 pb_10">
+                                          <h4 class="font_bold ">
+                                             <a style="font-size: 18px" href="articl/{{articles[4][3].id}}">{{articles[4][3].title}} </a> <!--<span class="badge">
+                                                </span>-->
+                                          </h4>
+                                          <div class="header"><a style="" href="#" class="person-name lnk by-linec">Plus</a></div>
+                                          <div class="fl_cmts">
+                                             <div class="timesss">
+                                                <h4>23 Jun 2024 </h4>
+                                             </div>
+                                             <div class="cmt">
+                                                <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                             </div>
+                                             <div class="cmt">
+                                                <i class="fas fa-signal" style="font-size: 12px;"></i><span> 6137</span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="black_box_areas_for_sports" style="margin-top: 15px;   background-image: linear-gradient(to right bottom, #44257d, #34246f, #262160, #1b1d51, #121941, #121941, #121941, #121941, #1b1d51, #262160, #34246f, #44257d);">
+                        <div class="inner_black_box_aresa">
+                           <div class="black_headers" style="padding: 0.1px 0px;">
+                              <h4>
+                              <span>
+                              </span>
+                              <div class="row">
+                                 <div class="first-carousel owl-carousel owl-theme">
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--mid ad-->
+                     <!-- next-middle-section -->
+                     <div class="next-middle-section">
+                        <div class="next-middle-section border_bottom">
+                           <div class="row mb-3">
+                              <div class="col-md-12">
+                                 <div class="latest_header mt-5">
+                                    <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1450980392);padding-bottom: 5px;margin-bottom: -5px;"> <a href="#">Features </a> </h4>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid box_wraperss border_bottom">
+                                    <h4>
+                                       <a href="articl/{{articles[4][4].id}}"> {{articles[4][4].title}}</a>
+                                       <!--<span class="badge">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 112</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <a href="#">
+                                       <img src="{{ url_for('static', filename=articles[4][4].image_file) }}" alt="‘Denary Odyssey’ at Lionel Wendt Ten ‘artists’ put life’s wonderings into work of art" srcset="" class="thumb_image">
+                                       </a>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid box_wraperss border_bottom">
+                                    <h4>
+                                       <a href="articl/{{articles[4][5].id}}"> {{articles[4][5].title}}</a>
+                                       <!--<span class="badge">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>1</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 617</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <a href="#">
+                                       <img src="{{ url_for('static', filename=articles[4][5].image_file) }}" alt="How healthy wetland ecosystems could reduce  risk of dengue" srcset="" class="thumb_image">
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][6].id}}">{{articles[4][6].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 278</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][6].id}}"> </a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 418</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][7].id}}"> {{articles[4][7].title}} </a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>21 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 216</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][8].id}}">{{articles[4][8].title}} </a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>21 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 208</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][9].id}}"> {{articles[4][2].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>21 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 279</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="read_more" style="margin-top: -15px">
+                                    <a href="#" class="read_more_link">MORE FEATURES</a>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="latest_header">
+                                    <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1450980392);padding-bottom: 5px;margin-bottom: -5px;"> <a href="#">Mirror Opinion </a> </h4>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid box_wraperss border_bottom">
+                                    <h4>
+                                       <a href="articl/{{articles[4][10].id}}"> {{articles[4][10].title}}</a>
+                                       <!--<span class="badge">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png')}}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 782</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <a href="#">
+                                       <img src="{{ url_for('static', filename=articles[4][10].image_file) }}" alt= "No IMG" srcset="" class="thumb_image">
+                                       </a>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid box_wraperss border_bottom">
+                                    <h4>
+                                       <a href="articl/{{articles[4][11].id}}">
+                                          {{articles[4][2].title}}
+                                       </a>
+                                       
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 84</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <a href="#">
+                                       <img src="{{ url_for('static', filename=articles[4][11].image_file) }}" alt="Asia Cooperation Dialogue An Opportunity to deepen  Intra-Asian cooperation and interaction" srcset="" class="thumb_image">
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <!-- -->
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][12].id}}">{{articles[4][12].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--	<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div> -->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 93</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][13].id}}">{{articles[4][13].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--	<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div> -->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 361</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][14].id}}">{{articles[4][14].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--	<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div> -->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>2</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 617</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][15].id}}"> {{articles[4][15].title}} </a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--	<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div> -->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 832</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][16].id}}">{{articles[4][16].title}} </a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--	<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div> -->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 230</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="read_more" style="margin-top: -15px">
+                                    <a href="#" class="read_more_link">MORE OPINION</a>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="latest_header mt-3">
+                                    <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1450980392);padding-bottom: 5px;margin-bottom: -5px;"> <a href="#">Mirror Business </a> </h4>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid box_wraperss border_bottom">
+                                    <h4>
+                                       <a href="articl/{{articles[4][17].id}}">{{articles[4][17].title}}</a>
+                                       <!--<span class="badge">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>3 hours ago    												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 719</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <a href="#">
+                                       <img src="{{ url_for('static', filename=articles[4][17].image_file) }}" alt="Export price pinch pressures SL apparel" srcset="" class="thumb_image">
+                                       </a>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid box_wraperss border_bottom">
+                                    <h4>
+                                       <a href="#">Security News This Week: A Catastrophic Hospital Hack Ends in a Leak of 300M Patient Records</a>
+                                       <!--<span class="badge">
+                                          </span>-->
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 51</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][18].id}}">{{articles[4][18].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div>-->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 1161</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][19].id}}">{{articles[4][19].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div>-->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 36</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][20].id}}">{{articles[4][20].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div>-->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 63</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][21].id}}">{{articles[4][21].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div>-->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>26 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 30</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4>
+                                       <a href="articl/{{articles[4][22].id}}">{{articles[4][22].title}}</a> <!--<span class="badge">
+                                          alt="">
+                                          </span>-->
+                                    </h4>
+                                    <!--<div class="by-line "><a href="#" class="person-name lnk">Chathuranga Pradeep</a></div>-->
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>1</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 296</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="read_more" style="margin-top: -15px">
+                                    <a href="#" class="read_more_link">MORE
+                                    BUSINESS</a>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row mt-3">
+                              <div class="col-md-12">
+                                 <div class="latest_header">
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss m_0 mb-3 border-bottom">
+                                    <h4><a href="articl/{{articles[4][23].id}}">{{articles[4][23].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 94</span>
+                                       </div>
+                                    </div>
+                                    <a href="#">
+                                       <div class="box_thumb">
+                                          <img src="{{ url_for('static', filename=articles[4][23].image_file) }}" alt="Skipper Chamari helps  Sri Lanka Women take 1-0 lead" srcset="" class="thumb_image">
+                                       </div>
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss m_0 mb-3 border-bottom">
+                                    <h4><a href="articl/{{articles[4][24].id}}">{{articles[4][24].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 45</span>
+                                       </div>
+                                    </div>
+                                    <a href="#">
+                                       <div class="box_thumb">
+                                          <img src="{{ url_for('static', filename=articles[4][24].image_file) }}" alt="Over 700 athletes to vie at National Meet" srcset="" class="thumb_image">
+                                       </div>
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss m_0 mb-3 border-bottom">
+                                    <h4><a href="articl/{{articles[4][25].id}}">{{articles[4][25].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 38</span>
+                                       </div>
+                                    </div>
+                                    <a href="#">
+                                       <div class="box_thumb">
+                                          <img src="{{ url_for('static', filename=articles[4][25].image_file) }}" alt="Lochana, Ranithma clinch WPBA Open titles" srcset="" class="thumb_image">
+                                       </div>
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss m_0 mb-3 border-bottom">
+                                    <h4><a href="articl/{{articles[4][26].id}}">{{articles[4][26].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 44</span>
+                                       </div>
+                                    </div>
+                                    <a href="#">
+                                       <div class="box_thumb">
+                                          <img src="{{ url_for('static', filename=articles[4][26].image_file) }}" alt="NCC, Moors SC, BRC, Bloomfield enter semis" srcset="" class="thumb_image">
+                                       </div>
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss m_0 mb-3 border-bottom">
+                                    <h4><a href="articl/{{articles[4][27].id}}">{{articles[4][27].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 19</span>
+                                       </div>
+                                    </div>
+                                    <a href="#">
+                                       <div class="box_thumb">
+                                          <img src="{{ url_for('static', filename='articles[4][27].image_file') }}" alt="South Africa pips WI to reach WC semi-finals" srcset="" class="thumb_image">
+                                       </div>
+                                    </a>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss m_0 mb-3 border-bottom">
+                                    <h4><a href="articl/{{articles[4][28].id}}">{{articles[4][28].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 65</span>
+                                       </div>
+                                    </div>
+                                    <a href="#">
+                                       <div class="box_thumb">
+                                          <img src="{{ url_for('static', filename=articles[4][28].image_file) }}" alt="Rohit stars as India beat Australia to reach T20 World Cup semi-finals" srcset="" class="thumb_image">
+                                       </div>
+                                    </a>
+                                 </div>
+                              </div>
+                              <!--<div class="read_more">
+                                 </div>-->
+                           </div>
+                           <div class="row mt-4">
+                              <div class="col-md-12">
+                                 <div class="latest_header">
+                                    <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1450980392);padding-bottom: 5px;margin-bottom: -5px;"><a href="#">Expose</a></h4>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid mt-2 box_wraperss border_bottom">
+                                    <h4><a href="articl/{{articles[4][29].id}}"></a>{{articles[4][29].title}}<span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/image_2aebb76387.jpg') }}" alt=""><span>4</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 2303</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <a href="#">
+                                       <img src="{{ url_for('static', filename=articles[4][29].image_file) }}" alt="" srcset="" class="thumb_image"></a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4><a href="articl/{{articles[4][30].id}}">{{articles[4][30].title}}</a>
+                                       <span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>04 Jun 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>5</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 4006</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4><a href="articl/{{articles[4][31].id}}">{{articles[4][31].title}}</a>
+                                       <span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>29 May 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>20</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 18141</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col_item_mid border_bottom mb_28 pb_10">
+                                    <h4><a href="articl/{{articles[4][32].id}}">{{articles[4][32].title}}</a>
+                                       <span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>22 May 2024     												</h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>18</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 7063</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row mt-3">
+                              <div class="col-md-12">
+                                 <div class="latest_header">
+                                    <h4 style="border-bottom: 1px solid rgba(0,0,0,0.1450980392);padding-bottom: 5px;margin-bottom: -5px;"><a href="#">Fact Check</a></h4>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss mb-4 border_bottom">
+                                    <h4><a href="articl/{{articles[4][33].id}}"> {{articles[4][33].title}} </a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>25 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>0</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 45</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <img src="{{ url_for('static', filename=articles[4][33].image_file) }}" alt="MP Abeysinghe not firm on the closure of firms due to economic crisis" srcset="" class="thumb_image">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss mb-4 border_bottom">
+                                    <h4><a href="articl/{{articles[4][34].id}}"></a>{{articles[4][34].title}}<span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>12 Jun 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>7</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 633</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <img src="{{ url_for('static', filename=articles[4][35].image_file) }}" alt="MP Withanage lands on SriLankan Airlines debt per family" srcset="" class="thumb_image">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss mb-4 border_bottom">
+                                    <h4><a href="articl/{{articles[4][36].id}}">{{articles[4][36].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>31 May 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>1</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 388</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <img src="{{ url_for('static', filename=articles[4][36].image_file) }}" alt="President’s advisor employs unemployment statistics incorrectly" srcset="" class="thumb_image">
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="col_item_mid  box_wraperss mb-4 border_bottom">
+                                    <h4><a href="articl/{{articles[4][37].id}}">{{articles[4][37].title}}</a><span class="badge">
+                                       </span>
+                                    </h4>
+                                    <div class="fl_cmts">
+                                       <div class="timesss">
+                                          <h4>09 May 2024
+                                          </h4>
+                                       </div>
+                                       <div class="cmt">
+                                          <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>4</span>
+                                       </div>
+                                       <div class="cmt">
+                                          <i class="fas fa-signal" style="font-size: 12px;"></i><span> 871</span>
+                                       </div>
+                                    </div>
+                                    <div class="box_thumb">
+                                       <img src="{{ url_for('static', filename=articles[4][37].image_file) }}" alt="MP Ranawaka shows  Sri Lanka borrowed more than it repaid in foreign loans" srcset="" class="thumb_image">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12">
+                              </div>
+                              <div class="col-md-6">
+                              </div>
+                              <div class="col-md-6">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- next-middle-section-end -->
+                  </div>
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-12">
+                     <div class="right_column_side_aress mt-40">
+                        <div class="inner_right_column_side_aress">
+                           <div class="col-xl-12 ">
+                           </div>
+                           <header style="margin-top: 20px">
+                              <div class="text-center top-ad d-none d-xl-block">
+                              </div>
+                           </header>
+                        </div>
+                     </div>
+                     <div class="next_bottom_r_column mt-40 d-none d-lg-block">
+                        <div class="inner_next_bottom_r_column">
+                           <div class="inner_latest_news_boxs">
+                              <div class="latest_header">
+                                 <h4>Popular 2024</h4>
+                              </div>
+                           </div>
+                           <div class="col_r_start">
+                              <div class="wrap">
+                                 <div class="newsTickerCon">
+                                    <ul class="newsTicker">
+                                       <!--********************************************************************************************-->
+                                       <li>
+                                          <div class="headline"><a href="#">"Cyber Storm: New Threats Emerge in June 2024"</a></div>
+                                          <!--<img src="/images/ids.logo.png" />-->
+                                          <p><strong style="color: midnightblue">
+                                             
+                                             <!-- In June 2024, cybersecurity headlines are dominated by several key issues. A critical Remote Code Execution (RCE) vulnerability was discovered in Mailcow, raising alarms among security experts. Additionally, fake virtual meeting software is spreading infostealers, and a significant vulnerability in VMware vCenter has been patched【6†source】【7†source】.<br><br>
+                                             Cloud security also remains a major concern, with CrowdStrike's 2024 Global Threat Report highlighting a 75% increase in cloud intrusions and the rise of identity-based attacks fueled by generative AI【8†source】. These developments underscore the evolving and increasingly sophisticated nature of cyber threats.<br><br>
+                                             For more details, <br><br>
+                                             visit [Innovate Cybersecurity](https://www.innovatecybersecurity.com) and [CrowdStrike](https://www.crowdstrike.com/global-threat-report). -->
+                                             <br>
+                                             <a style="color: #b00020" href="#">Read more...</a>
+                                          </p>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="next_bottom_r_column mt-40">
+                        <div class="inner_next_bottom_r_column">
+                           <div class="inner_latest_news_boxs">
+                              <div class="latest_header">
+                                 <h4><a href="#">Mirror Business 24/7</a></h4>
+                              </div>
+                           </div>
+                           <div class="col_r_start">
+                              {% for i in articles[3] %}
+                              <div class="col_r_item border_bottom mb-20 pb_10">
+                              
+                                 <div class="inner_col_r_item">
+                                    <a href="#">
+                                    <div class="image_r_boxs">
+                                          <img src="{{ url_for('static', filename=i.image_file) }}" class="width-72" alt=""" srcset="">
+                                       </div>
+                                    </a>
+                                    
+                                    <div class="rx_content">
+                                       <div class="inner_rx_content">
+                                          <p>
+                                             <a href="#">{{i.title}}</a><span class="badge">
+                                             </span>
+                                          </p>
+                                          <div class="fl_cmts">
+                                             <div class="timesss">
+                                                <h4>25 Jun 2024     														</h4>
+                                             </div>
+                                             <div class="cmt">
+                                                <img src="{{ url_for('static', filename='images/chat.png') }}" alt=""><span>2</span>
+                                             </div>
+                                             <div class="cmt">
+                                                <i class="fas fa-signal" style="font-size: 12px;"></i><span> 765</span>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              {% endfor %}
+
+                           </div>
+                        </div>
+                     </div>
+
+                  </div>
+                  <!-- <div class="next_bottom_r_column border_bottom mb-40 pb_10 mt-40">
+                     <div class="inner_latest_news_boxs">
+                        <div class="latest_header">
+                        </div>
+                     </div> -->
+                  </div>
+                  </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <!----------------------------------------------Next Row----------------------------------->
+      <script>
+
+      </script>
+      <script type="text/javascript">
+         // Load the Visualization API and the corechart package.
+         google.charts.load('current', {
+         	'packages': ['corechart']
+         });
+
+         // Set a callback to run when the Google Visualization API is loaded.
+         google.charts.setOnLoadCallback(drawChart);
+
+         // Callback that creates and populates a data table,
+         // instantiates the pie chart, passes in the data and
+         // draws it.
+
+
+         function drawChart1(answerid) {
+         	var ansid = answerid;
+         	var data = new google.visualization.DataTable();
+         	data.addColumn('string', 'Topping');
+         	data.addColumn('number', 'Slices');
+
+         	data.addRows([
+
+
+         			['Yes', 4],
+
+
+         			['No', 80],
+
+
+         			['Do not Know', 2],
+
+
+
+         	]);
+
+
+         										if (ansid == 1120) {
+         			data.setCell(0, 1, 5);
+
+         		}
+
+
+         										if (ansid == 1121) {
+         			data.setCell(1, 1, 81);
+
+         		}
+
+
+         										if (ansid == 1122) {
+         			data.setCell(2, 1, 3);
+
+         		}
+
+
+         									// Set chart options
+         	var options = {
+         		'title': '',
+         		'width': 300,
+         		'height': 300
+         	};
+
+         	// Instantiate and draw our chart, passing in some options.
+         	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+         	chart.draw(data, options);
+
+         }
+
+         function drawChart() {
+
+         	// Create the data table.
+         	var data = new google.visualization.DataTable();
+         	data.addColumn('string', 'Topping');
+         	data.addColumn('number', 'Slices');
+         	data.addRows([
+         		[' Yes', 4],
+         		[' No', 80],
+         		[' Do not Know', 2],
+
+
+         	]);
+
+         	// Set chart options
+         	var options = {
+         		'title': '',
+         		'width': 300,
+         		'height': 300
+         	};
+
+         	// Instantiate and draw our chart, passing in some options.
+         	var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+         	chart.draw(data, options);
+         }
+      </script>
+      <!-- Body -->
+      <div id="post-data"></div>
+      <div id="bt"></div>
+      <script type="text/javascript">
+         $(document).ready(function() {
+         	$('#content').infinitescroll({
+         		navSelector: "#next:last",
+         		nextSelector: "#next:last",
+         		itemSelector: "#content",
+         		debug: false,
+         		dataType: 'html',
+         		maxPage: 6,
+         		path: function(index) {
+         			console.log(index);
+         		index = index || 3;
+         			return "#" + index + ".html";
+
+         		}
+         		// appendCallback	: false, // USE FOR PREPENDING
+         	}, function(newElements, data, url) {
+         		// used for prepending data
+         		// $(newElements).css('background-color','#ffef00');
+         		// $(this).prepend(newElements);
+         	});
+         });
+      </script>
+      <script type="text/javascript"></script>
+      <!--------======================================Footer Section================================-------->
+      <div class="footer_section">
+         <div class="inner_footer_sections">
+            <div class="footer_top_section">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-xl-6 col-md-6  col-12">
+                        <div class="footer_header_wraping">
+                           <h2>Connect With Us</a></h2>
+                        </div>
+                     </div>
+                     <div class="col-xl-6  col-md-6  col-12">
+                        <div class="footer_header_wraping right_hd">
+                           <section class="pt-2 text-right w-100">
+                              <!-- Facebook -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-facebook-f me-4"></i> </a>
+                              <!-- Twitter -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-twitter me-4"></i> </a>
+                              <!-- Google -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-google me-4"></i> </a>
+                              <!-- Instagram -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-instagram me-4"></i> </a>
+                              <!-- Linkedin -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-linkedin-in me-4"></i> </a>
+                              <!-- Pinterest -->
+                              <!--<a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-pinterest me-4"></i> </a>-->
+                              <!-- Youtube -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-youtube me-4"></i> </a>
+                              <!-- Dribbble -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-viber me-4"></i> </a>
+                              <!-- news lettet -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fa fa-newspaper me-4"></i> </a>
+                              <!-- Whatsapp -->
+                              <a style="text-decoration: none; color:#212529" href="#" target="_blank"> <i style="font-size: 24px;" class="fab fa-whatsapp"></i> </a>
+                           </section>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="footer_top_section_column_section_content_wraper">
+               <div class="column_section_content_wraper">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-xl-2  col-md-6  col-12 d-none d-lg-block">
+                           <div class="ft_column_body">
+                              <div class="col_item_ft">
+                                 <div class="col_heading_ftp">
+                                    <h4>Trending News</h4>
+                                 </div>
+                                 <div class="col_contenmt_ftp_list">
+                                    <ul class="footer_ul_amrc">
+                                       <li>Lankadeepa</li>
+                                       <li>Ada</li>
+                                       <li>Sunday Times</li>
+                                       <li>Daily FT</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xl-2   col-md-6  col-12 d-none d-lg-block">
+                           <div class="ft_column_body">
+                              <div class="col_item_ft">
+                                 <div class="col_heading_ftp">
+                                    <h4>Daily News</h4>
+                                 </div>
+                                 <div class="col_contenmt_ftp_list">
+                                    <ul class="footer_ul_amrc">
+                                       <li>lankadeepa</li>
+                                       <li>Sunday Lankadeepa</li>
+                                       <li>Sunday Times</li>
+                                       <li>Daily FT</li>
+                                       <li>Ada</li>
+                                       <li>Tamil Mirror</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="col_item_ft">
+                                 <div class="col_heading_ftp">
+                                    <h4>Classified</h4>
+                                 </div>
+                                 <div class="col_contenmt_ftp_list">
+                                    <ul class="footer_ul_amrc">
+                                       <li>Hitad</li>
+                                       <li>Timesjobs</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xl-2   col-md-6  col-12 d-none d-lg-block">
+                           <div class="ft_column_body">
+                              <div class="col_item_ft">
+                                 <div class="col_heading_ftp">
+                                    <h4>services</h4>
+                                 </div>
+                                 <div class="col_contenmt_ftp_list">
+                                    <ul class="footer_ul_amrc">
+                                       <li>E-Paper</a></li>
+                                       <li>Home delivery</a></li>
+                                       <li>Advertise with us</a></li>
+                                       <li>Mobile Apps </li>
+                                       <li>feedback</li>
+                                       <li>Archive</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xl-2   col-md-6  col-12 d-none d-lg-block">
+                           <div class="ft_column_body">
+                              <div class="col_item_ft">
+                                 <div class="col_heading_ftp">
+                                    <h4>Section</h4>
+                                 </div>
+                                 <div class="col_contenmt_ftp_list">
+                                    <ul class="footer_ul_amrc">
+                                       <li>Opinion</li>
+                                       <li>Expose</li>
+                                       <li>Features</li>
+                                       <li>Cartoon</li>
+                                       <li>World News</li>
+                                       <li>Sports</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xl-4   col-md-12  col-12">
+                           <div class="ft_column_body">
+                              <div class="col_item_ft">
+                                 <div class="col_heading_ftp">
+                                    <h4>Designing</h4>
+                                 </div>
+                                 <div class="col_contenmt_ftp_list">
+                                    <div class="lister_on border-bottom-dr">
+                                       <div class="t_lister cmn_cl mb-1">
+                                          <span class="plan_txt">Akila Sampath</span><br>
+                                          <span class="plan_txt">Suchanritha Pahesara</span>
+                                       </div>
+                                       <br>
+                                       <div class="t_lister cmn_cl mb-1">
+                                          <span class="plan_txt">Mihara Bandaranayake</span><br>
+                                          <span class="plan_txt">Nethula Ashinsana</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- footer-copy-rights -->
+      <div class="footer-copy-rights">
+         <div class="inner_footer_footer-copy">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-12">
+                     <div class="full_fct">
+                        <h4>
+                           All the content on this website is copyright protected and can be reproduced only by giving the due courtesy to 'dailymirror.lk' Copyright ©TeamBCCS
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="fixed d-block d-sm-none" style="position: relative;
+         position: fixed;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         max-width: 320px;
+         width:100%;
+         margin: 0 auto;
+         z-index: 9999;">
+         <center>
+         </center>
+      </div>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/pa-62d04147405b1d0011001005.js" async=""></script>
+      <script>
+         document.getElementById('close-flclose').addEventListener('click', function() {
+             document.getElementById('close-fl').style.display = 'none';
+         });
+      </script>
+      <script>
+         $(".menus_bars").click(function() {
+             $(".mobile_menus_area").show();
+         });
+
+         $(".cls_btn").click(function() {
+             $(".mobile_menus_area").hide();
+         });
+
+         $(".bar").click(function() {
+             $(".side_section_menus").addClass('active_block');
+             $(".bgg_darkss").show();
+         });
+
+         $(".closess").click(function() {
+             $(".side_section_menus").removeClass('active_block');
+             $(".bgg_darkss").hide();
+         });
+
+
+         $(".search_btns").click(function() {
+             $(".search_boxs").show();
+
+         });
+
+         $(".s_clsr").click(function() {
+             $(".search_boxs").hide();
+         });
+
+         // bar
+      </script>
+      <script type="text/javascript"></script>
+      <script>
+         $(document).ready(function(e) {
+         	var newsNum = $(".newsTicker li").length;
+
+         	var totalNews_H =0;
+         	for(var i=0; i<newsNum; i++){
+         		var news_H = $(".newsTicker li").eq(i).outerHeight(true);
+         		totalNews_H = totalNews_H + news_H;
+         	}
+
+         	$(".newsTicker").css('height', totalNews_H+'px');
+
+         	var speed =1, animAmount, animInterval;
+
+         	animateNews();
+
+         	function animateNews(){
+         		$(".newsTicker li").eq(0).animate({
+         			'marginTop' : '-='+ speed + 'px'
+         		},1, function(){
+         			animAmount = speed;
+         			var animNews_H = $(".newsTicker li").eq(0).outerHeight(true);
+
+         			if(animAmount >= animNews_H){
+         				$(this).parent().append($(this));
+         				$(this).removeAttr('style');
+         			}
+
+         			animInterval = setTimeout(function(){
+         				animateNews();
+         			},50);
+         		});
+         	}
+
+         	$(".newsTicker").hover(function(){
+         		clearTimeout(animInterval);
+         		$(".newsTicker li").eq(0).stop();
+         	}, function(){
+         		animateNews();
+         	});
+         });
+
+      </script>
+      <script>
+         $('.first-carousel').owlCarousel({
+             margin:10,
+             responsiveClass:true,
+         	nav:true,
+         	autoplay:true,
+         	loop:true,
+             responsive:{
+                 0:{
+                     items:1,
+                     nav:true
+                 },
+                 600:{
+                     items:2,
+                     nav:false
+                 },
+                 1000:{
+                     items:3,
+                     nav:true,
+                     loop:false
+                 }
+             }
+         })
+      </script>
+      <script>
+         $('.story-carousel').owlCarousel({
+              center: false,
+             loop: true,
+             margin: 15,
+             stagePadding: 50,
+             nav: true,
+             responsive:{
+                 0:{
+                     items:1,
+                     nav:true
+                 },
+                 600:{
+                     items:2,
+                     nav:false
+                 },
+                 1000:{
+                     items:4,
+                     nav:true,
+                     loop:false
+                 }
+             }
+         })
+      </script>
+
+      <div id="brnews1div" class="d-lg-none">
+         <center>
+         </center>
+      </div>
+      <div id="brnews2div" class="d-lg-none">
+         <center>
+         </center>
+      </div>
+      <div id="brnews3div" class="d-lg-none">
+         <center>
+         </center>
+      </div>
+      <div id="brnews4div" class="d-lg-none">
+         <center>
+         </center>
+      </div>
+      <div id="brnews5div" class="d-lg-none">
+         <center>
+            <p><img src="images/advr_8e079feba1.gif"></p>
+         </center>
+         <center>
+            <p><iframe allowfullscreen="" data-ex-slot-check="iframe_ex_slot_1" frameborder="0" height="550px" marginheight="0px" marginwidth="0px" name="hitad" scrolling="no" src="https://www.hitad.lk/Widget/widget_eng" style="border:0px #ffffff none;" width="300px"></iframe></p>
+         </center>
+      </div>
+      <div id="brnews6div" class="d-lg-none">
+         <center>
+         </center>
+      </div>
+      <script>
+
+         $("#brnews1div").detach().prependTo("#breakingnewsads>div.lineg:nth-child(5)");
+         $("#brnews2div").detach().prependTo("#breakingnewsads>div.lineg:nth-child(10)");
+         $("#brnews3div").detach().prependTo("#breakingnewsads>div.lineg:nth-child(15)");
+         $("#brnews4div").detach().prependTo("#breakingnewsads>div.lineg:nth-child(20)");
+         $("#brnews5div").detach().prependTo("#breakingnewsads>div.lineg:nth-child(25)");
+         $("#brnews6div").detach().prependTo("#breakingnewsads>div.lineg:nth-child(30)");
+      </script>
+      <style>
+         .ad-div {
+         position: fixed;
+         bottom: 10px;
+         right: 10px;
+         width: 300px;
+         height: 450px;
+         background-color: #f1f1f1;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         padding: 15px;
+         border-radius: 5px;
+         z-index: 1000;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         font-size: 18px;
+         color: #333;
+         }
+         /* Style for the close button */
+         .close-btn {
+         position: absolute;
+         top: 5px;
+         right: 10px;
+         background: none;
+         border: none;
+         font-size: 35px;
+         cursor: pointer;
+         }
+      </style>
+      <script>
+         function setCookie(cname, cvalue, exhours) {
+             var d = new Date();
+             d.setTime(d.getTime() + (exhours * 60 * 60 * 1000));
+             var expires = "expires=" + d.toUTCString();
+             document.cookie = cname + "=" + cvalue + "; " + expires + ";domain=dailymirror.lk;path=/";
+         }
+
+         function getCookie(cname) {
+             var name = cname + "=";
+             var ca = document.cookie.split(';');
+             for (var i = 0; i < ca.length; i++) {
+                 var c = ca[i];
+                 while (c.charAt(0) == ' ') c = c.substring(1);
+                 if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+             }
+             return "";
+         }
+
+         $(document).ready(function() {
+             // Existing code for modals
+             $("#close0").click(function() {
+                 $("#openModal0").attr("class", "modalDialog");
+                 var frame = document.getElementById("ytubepl");
+                 if (frame) {
+                     frame.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                 }
+             });
+             $("#close1").click(function() {
+                 $("#openModal1").attr("class", "modalDialog");
+             });
+             $("#close3").click(function() {
+                 $("#openModal3").attr("class", "modalDialog");
+             });
+
+             if (getCookie("nsd") == "") {
+                 setCookie("nsd", "0", 3);
+                 $("#openModal0").attr("class", "modalDialog opend");
+             } else if (getCookie("nsd") == "0") {
+                 setCookie("nsd", "1", 3);
+                 $("#openModal1").attr("class", "modalDialog opend");
+             }
+
+             if (getCookie("mobile") == "") {
+                 setCookie("mobile", "0", 3);
+                 setTimeout(function() {
+                     $("#openModal3").attr("class", "modalDialog opend");
+                 }, 5000);
+                 $(document).on('click', 'body *', function() {
+                     $("#openModal3").attr("class", "modalDialog");
+                 });
+             }
+
+             // Floating ad functionality
+             var closeAdButton = document.getElementById('closeAd');
+             var floatingAd = document.getElementById('floatingAd');
+             var scrollCount = 0;
+
+             // Function to show the ad div
+             function showAd() {
+                 floatingAd.style.display = 'flex';
+                 setCookie('lastAdShownTime', Date.now(), 1);
+             }
+
+             // Close the ad div when the close button is clicked
+             closeAdButton.addEventListener('click', function() {
+                 floatingAd.style.display = 'none';
+             });
+
+             // Check if the ad was shown in the last hour
+             function adShownRecently() {
+                 var lastAdShownTime = getCookie('lastAdShownTime');
+                 if (lastAdShownTime) {
+                     var oneHour = 60 * 60 * 1000; // milliseconds in one hour
+                     return (Date.now() - parseInt(lastAdShownTime)) < oneHour;
+                 }
+                 return false;
+             }
+
+             // Track scroll events and show the ad on the second scroll if not shown recently
+             window.addEventListener('scroll', function() {
+                 if (scrollCount < 2) {
+                     scrollCount++;
+                 }
+                 if (scrollCount === 2 && !adShownRecently()) {
+                     showAd();
+                 }
+             });
+         });
+
+
+      </script>
+   </body>
+</html>

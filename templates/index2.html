@@ -1,0 +1,94 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cybersecurity News</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+         #container1 {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            padding: 10px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            overflow: hidden; /* Hide any overflowing content */
+        }
+        #the_p {
+            margin: 0;
+            word-wrap: break-word; /* Break words to fit the container */
+            white-space: normal; /* Allow the text to wrap */
+        }
+
+</style>
+<body>
+<div class="container">
+    <h1 class="mt-5">Latest Cybersecurity News</h1>
+    <div class="list-group mt-3">
+        {% for article in articles[0] %}
+        <a href="\article\{{article.id}}" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-md-4">
+                    {% if article.image_file %}
+                    <img src="{{ url_for('static', filename=article.image_file) }}" class="img-fluid" alt="Article Image">
+                    {% else %}
+                    <img src="https://via.placeholder.com/150" class="img-fluid" alt="Placeholder Image">
+                    {% endif %}
+                </div>
+                <div class="col-md-8" id="container1">
+                    <h5 class="mb-1">{{ article.title }}</h5>
+                    <p class="mb-1" id="the_p">{{ article.description[:150] }}....</p>
+                </div>
+            </div>
+        </a>
+
+        {% endfor %}
+    </div>
+    <div class="list-group mt-3">
+        {% for article in articles[1] %}
+        <a href="\article\{{article.id}}" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-md-4">
+                    {% if article.image_file %}
+                    <img src="{{ url_for('static', filename=article.image_file) }}" class="img-fluid" alt="Article Image">
+                    {% else %}
+                    <img src="https://via.placeholder.com/150" class="img-fluid" alt="Placeholder Image">
+                    {% endif %}
+                </div>
+                <div class="col-md-8" id="container1">
+                    <h5 class="mb-1">{{ article.title }}</h5>
+                    <p class="mb-1" id="the_p">{{ article.description[:150] }}....</p>
+                </div>
+            </div>
+        </a>
+
+        {% endfor %}
+    </div>
+    <div class="list-group mt-3">
+        {% for article in articles[2] %}
+        <a href="\article\{{article.id}}" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-md-4">
+                    {% if article.image_file %}
+                    <img src="{{ url_for('static', filename=article.image_file) }}" class="img-fluid" alt="Article Image">
+                    {% else %}
+                    <img src="https://via.placeholder.com/150" class="img-fluid" alt="Placeholder Image">
+                    {% endif %}
+                </div>
+                <div class="col-md-8" id="container1">
+                    <h5 class="mb-1">{{ article.title }}</h5>
+                    <p class="mb-1" id="the_p">{{ article.description[:150] }}....</p>
+                </div>
+            </div>
+        </a>
+
+        {% endfor %}
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
