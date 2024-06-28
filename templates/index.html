@@ -715,8 +715,8 @@
                                  <i class="fas fa-signal" style="font-size: 12px;"></i><span> 1350</span>
                               </div>
                            </div>
-                           <p><a href="#">
-                              <img style="width:110px" src="{{ url_for('static', filename=articles[0][0].image_file) }}" alt="Sri Lanka poised to secure grace period for repaying bilateral debts" srcset=""> </a>
+                           <p><a href="articl/{{articles[0][0].id}}">
+                              <img style="width:110px" src="{{ url_for('static', filename=articles[0][0].image_file) }}" alt="No IMG" srcset=""> </a>
                               {{articles[0][0].description[:600]}}... 
                         </div>
                      </div>
@@ -756,7 +756,7 @@
                      <div class="latest_news_boxs pb_10 border_bottom mt-4 d-none d-lg-block">
                         <div class="latest_content_boxs">
                            <h4>
-                              <a href="#">{{i.title}} </a>
+                              <a href="articl/{{i.id}}">{{i.title}} </a>
                            </h4>
                         </div>
                         <div class="news_block">
