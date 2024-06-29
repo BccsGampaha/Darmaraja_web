@@ -12,8 +12,8 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///articles.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
-app.config['BASIC_AUTH_USERNAME'] = 'admin'  # Replace with ADMIN_USERNAME
-app.config['BASIC_AUTH_PASSWORD'] = 'password'  # Replace with ADMIN_PASSWORD
+app.config['BASIC_AUTH_USERNAME'] = 'admin'  
+app.config['BASIC_AUTH_PASSWORD'] = 'password'  
 basic_auth = BasicAuth(app)
 
 db = SQLAlchemy(app)
