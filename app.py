@@ -115,7 +115,7 @@ def get_article(article_id):
     if not article:
         return render_template('404.html'), 404
 
-    return render_template('article.html', article=article)
+    return render_template('News.html', article=article)
 
 
 
