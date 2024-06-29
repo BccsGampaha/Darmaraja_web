@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<title>smartcityinto</title>
+
+<link href='http://fonts.googleapis.com/css?family=Nova+Mono' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/style1.css') }}">
+<!--<link href="css/style1.css" rel="stylesheet" type="text/css" media="screen" >-->
+</head>
+<body>
+	
+	<div id="cover">
+		<div id="conOne">
+			<!--nothing to show-->
+		</div>
+		<div id="wrapper">
+			<div id="header-wrapper">
+				<div id="header">
+					<div id="logo">
+						<h1><a href="#">CyberSec</a></h1>
+						
+					</div>
+				</div>
+			</div>
+			<!-- end #header -->
+			<div id="menu">
+				<ul>
+					<li class="current_page_item"><a href="#">Full Story</a></li>
+					<li><a href="/">Another Topics</a></li>
+					
+				</ul>
+			</div>
+			<!-- end #menu -->
+			<div id="page">
+				<div id="page-bgtop">
+					<div id="page-bgbtm">
+						<div id="content">
+							<div class="post">
+
+
+								<h2 class="title"> #  {{ article.title }}</h2>
+								<p class="meta">June 27 , 2024
+									&nbsp;&bull;&nbsp; &nbsp;&bull;&nbsp;Full article</a></p>
+								<div class="entry">
+									<div><img src="{{ url_for('static', filename=article.image_file) }}" width="960" height="480" alt="smart city" class="alignleft border" style="margin-bottom: 20px;" />
+										
+										<p>
+										{{ article.description }}
+										</p>
+									</div>
+												
+													<br>
+
+
+
+
+
+												</div>
+							</div>
+		
+							<div style="clear: both;">&nbsp;</div>
+						</div>
+						<!-- end #content -->
+						
+						<div style="clear: both;">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+			<!-- end #page -->
+			<footer>
+				<!--footer content-->
+			</footer>
+				<!-- end #footer -->
+		</div>
+		<div id="conThird">
+			<!--nothing to show-->
+		</div>
+	</div>
+
+</body>
+</html>
